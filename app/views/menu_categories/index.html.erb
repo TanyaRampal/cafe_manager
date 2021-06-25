@@ -1,0 +1,30 @@
+<%= form_with(url: "/menu_categories", method: "post") do %>
+  <%= text_field_tag "name", nil, placeholder: "name", autofocus: true %>
+  <%= submit_tag "Add" %>
+<% end %>
+
+<ul>
+  <% MenuCategory.all.each do |single_category| %>
+    <li>
+      <label>
+        <p> <%= single_category.name %> </p>
+
+        <% single_category.menu_items.each do |item| %>
+          <p> <%= item.name %> <%= item.description %> <%= item.price %> </p>
+          <% # <%= item.image %>
+          <% # <%= cl_image_tag(item.image, width: 300, height: 200, crop: :scale, effect: "cartoonify") %>
+        <% end %>
+
+        <%= form_with(url: "/menu_items", method: "post") do %>
+          <%= text_field_tag "name", nil, placeholder: "name", autofocus: true %>
+          <%= text_field_tag "description", nil, placeholder: "description" %>
+          <%= number_field_tag "price", nil, placeholder: "price", min: 0, step: 0.01 %>
+          <%= hidden_field_tag "menu_category_id", single_category.id %>
+          <%= file_field_tag "image", direct_upload: true %>
+          <%= submit_tag "Add" %>
+        <% end %>
+
+      </label>
+    </li>
+  <% end %>
+</ul>

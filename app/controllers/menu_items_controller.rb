@@ -1,10 +1,7 @@
 class MenuItemsController < ApplicationController
   def create
     MenuItem.create!(
-      menu_category_id: params[:menu_category_id],
-      name: params[:name],
-      description: params[:description],
-      price: params[:price],
+      params.permit(:menu_category_id, :name, :description, :price)
     )
     redirect_to menu_categories_path
   end

@@ -11,6 +11,11 @@
 
           <p> <%= item.menu_item_name %> <%= item.menu_item_price %> <%= item.quantity %> <%= item.quantity * item.menu_item_price %> </p>
           <% @sum += item.quantity * item.menu_item_price %>
+          <div style="display: inline-flex; border: 1px solid black;">
+              <%= button_to "-", "/cart_items/#{item.id}", method: "patch", params: { "value" => "decrease" } %>
+              <%= item.quantity %>
+              <%= button_to "+", "/cart_items/#{item.id}", method: "patch", params: { "value" => "increase" } %>
+            </div>
       </label>
     </li>
   <% end %>

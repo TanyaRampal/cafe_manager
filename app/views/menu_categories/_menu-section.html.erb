@@ -22,13 +22,23 @@
           <% # <%= item.image %>
           <% # <%= cl_image_tag(item.image, width: 300, height: 200, crop: :scale, effect: "cartoonify") %>
 
-          <%= form_with(url: "/cart_items", method: "post") do %>
-            <%= hidden_field_tag "cart_id", @current_user.carts.first.id %>
-            <%= hidden_field_tag "menu_item_id", item.id %>
-            <%= hidden_field_tag "menu_item_name", item.name %>
-            <%= hidden_field_tag "menu_item_price", item.price %>
-            <%= submit_tag "Add" %>
-            <br><br>
+          <% if @in_cart = cart.cart_items.in_cart?(item.name) %>
+            <div style="display: inline-flex; border: 1px solid black;">
+              <%= button_to "-", "/cart_items/#{@in_cart.id}", method: "patch", params: { "value" => "decrease" } %>
+              <%= @in_cart.quantity %>
+              <%= button_to "+", "/cart_items/#{@in_cart.id}", method: "patch", params: { "value" => "increase" } %>
+            </div>
+
+          <% else %>
+            <%= form_with(url: "/cart_items", method: "post") do %>
+              <%= hidden_field_tag "cart_id", @current_user.carts.first.id %>
+              <%= hidden_field_tag "menu_item_id", item.id %>
+              <%= hidden_field_tag "menu_item_name", item.name %>
+              <%= hidden_field_tag "menu_item_price", item.price %>
+              <%= submit_tag "Add to cart" %>
+              <br><br>
+            <% end %>
+
           <% end %>
 
 

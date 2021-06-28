@@ -27,6 +27,7 @@
  <!-- Section for menu -->
   <%= render partial: "menu-section", locals: {
                role: @current_user.role,
+               cart: @current_user.carts.first,
              } %>
   <!-- End of menu -->
 

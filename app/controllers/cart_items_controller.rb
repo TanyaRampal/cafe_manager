@@ -13,4 +13,19 @@ class CartItemsController < ApplicationController
     end
     redirect_to menu_categories_path
   end
+
+  def update
+    item = current_user.carts.first.cart_items.find(params[:id])
+    if params[:value] == "increase"
+      item.quantity += 1
+    else
+      item.quantity -= 1
+    end
+    if item.quantity > 0
+      item.save
+    else
+      item.destroy
+    end
+    redirect_to menu_categories_path
+  end
 end

@@ -1,6 +1,7 @@
 <% if role == "owner" %>
 <%= form_with(url: "/menu_categories", method: "post") do %>
   <%= text_field_tag "name", nil, placeholder: "name", autofocus: true %>
+  <%= file_field_tag "category_image", direct_upload: true %>
   <%= submit_tag "Add" %>
 <% end %>
 <% end %>
@@ -16,11 +17,14 @@
     <li>
       <label>
         <p> <%= single_category.name %> </p>
+          <% # <%= image_tag single_category.category_image, size: "100" %>
+          <%= cl_image_tag(single_category.category_image.key, width: 300, height: 300) %>
+
         <br>
         <% single_category.menu_items.each do |item| %>
           <p> <%= item.name %> <%= item.description %> <%= item.price %> </p>
-          <% # <%= item.image %>
-          <% # <%= cl_image_tag(item.image, width: 300, height: 200, crop: :scale, effect: "cartoonify") %>
+          <% # <%= image_tag item.item_image, size: "100" %>
+          <%= cl_image_tag(item.item_image.key, width: 300, height: 300) %>
 
           <% if @in_cart = cart.cart_items.in_cart?(item.name) %>
             <div style="display: inline-flex; border: 1px solid black;">
@@ -35,6 +39,7 @@
               <%= hidden_field_tag "menu_item_id", item.id %>
               <%= hidden_field_tag "menu_item_name", item.name %>
               <%= hidden_field_tag "menu_item_price", item.price %>
+              <%= hidden_field_tag "item_image", item.item_image %>
               <%= submit_tag "Add to cart" %>
               <br><br>
             <% end %>
@@ -50,7 +55,7 @@
           <%= text_field_tag "description", nil, placeholder: "description" %>
           <%= number_field_tag "price", nil, placeholder: "price", min: 0, step: 0.01 %>
           <%= hidden_field_tag "menu_category_id", single_category.id %>
-          <% # <%= file_field_tag "image", direct_upload: true %>
+          <%= file_field_tag "item_image", direct_upload: true %>
           <%= submit_tag "Add" %>
         <% end %>
         <% end %>

@@ -8,7 +8,7 @@ class CartItemsController < ApplicationController
     else
       params[:quantity] = 1
       CartItem.create!(
-        params.permit(:cart_id, :menu_item_id, :menu_item_name, :menu_item_price, :quantity)
+        params.permit(:cart_id, :menu_item_id, :menu_item_name, :menu_item_price, :quantity, :item_image)
       )
     end
     redirect_to menu_categories_path

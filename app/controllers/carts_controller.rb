@@ -22,6 +22,7 @@ class CartsController < ApplicationController
         menu_item_name: item.menu_item_name,
         menu_item_price: item.menu_item_price,
         quantity: item.quantity,
+        item_image: item.item_image,
       )
     end
 

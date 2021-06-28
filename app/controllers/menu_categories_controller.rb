@@ -10,6 +10,7 @@ class MenuCategoriesController < ApplicationController
   def create
     MenuCategory.create!(
       name: params[:name],
+      category_image: params[:category_image],
     )
     redirect_to menu_categories_path
   end

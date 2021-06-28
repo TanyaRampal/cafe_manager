@@ -10,6 +10,9 @@
       <label>
 
           <p> <%= item.menu_item_name %> <%= item.menu_item_price %> <%= item.quantity %> <%= item.quantity * item.menu_item_price %> </p>
+          <%= cl_image_tag(item.item_image.key, width: 300, height: 300) %>
+
+
           <% @sum += item.quantity * item.menu_item_price %>
           <div style="display: inline-flex; border: 1px solid black;">
               <%= button_to "-", "/cart_items/#{item.id}", method: "patch", params: { "value" => "decrease" } %>

@@ -1,4 +1,4 @@
 class CartItem < ActiveRecord::Base
-  belongs_to :order
+  belongs_to :cart
   belongs_to :menu_item
 end

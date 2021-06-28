@@ -1,0 +1,22 @@
+<h1>cart</h1>
+<br><br>
+
+
+<ul>
+<% @sum = 0 %>
+  <% cart.cart_items.all.each do |item| %>
+
+    <li>
+      <label>
+
+          <p> <%= item.menu_item_name %> <%= item.menu_item_price %> <%= item.quantity %> <%= item.quantity * item.menu_item_price %> </p>
+          <% @sum += item.quantity * item.menu_item_price %>
+      </label>
+    </li>
+  <% end %>
+</ul>
+<% if @sum > 0 %>
+<%= @sum %>
+<% end %>
+<br><br>
+<%= button_to "Checkout", "/carts/#{cart.id}", method: "get" %>

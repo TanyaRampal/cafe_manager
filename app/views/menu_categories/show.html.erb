@@ -1,0 +1,35 @@
+<%= button_to "Sign-out laaaaaaaaaaaaaaa", destroy_session_path, method: "delete", class: "Sign-out-button" %>
+
+<br><br>
+
+<label style="display:flex">
+
+
+
+<div style="width: 30%" class="cart">
+
+ <!-- Section for cart -->
+  <%= render partial: "cart-section", locals: {
+               cart: @current_user.carts.first,
+             } %>
+  <!-- End of cart -->
+
+<br><br><br><br>
+
+<%= button_to "pending orders", pending_orders_path, method: "get" %>
+<%= button_to "delivered orders", delivered_orders_path, method: "get" %>
+
+</div>
+
+
+<div>
+
+ <!-- Section for menu -->
+  <%= render partial: "menu-section", locals: {
+               role: @current_user.role,
+             } %>
+  <!-- End of menu -->
+
+
+</div>
+</label>

@@ -1,22 +1,40 @@
-    <%= button_to "Sign-out", destroy_session_path, method: "delete", class: "Sign-out-button" %>
-
+<% if role == "owner" %>
 <%= form_with(url: "/menu_categories", method: "post") do %>
   <%= text_field_tag "name", nil, placeholder: "name", autofocus: true %>
   <%= submit_tag "Add" %>
 <% end %>
+<% end %>
+
+
+<br><br>
+
+<h1>menu</h1>
+<br><br>
 
 <ul>
   <% MenuCategory.all.each do |single_category| %>
     <li>
       <label>
         <p> <%= single_category.name %> </p>
-
+        <br>
         <% single_category.menu_items.each do |item| %>
           <p> <%= item.name %> <%= item.description %> <%= item.price %> </p>
           <% # <%= item.image %>
           <% # <%= cl_image_tag(item.image, width: 300, height: 200, crop: :scale, effect: "cartoonify") %>
+
+          <%= form_with(url: "/cart_items", method: "post") do %>
+            <%= hidden_field_tag "cart_id", @current_user.carts.first.id %>
+            <%= hidden_field_tag "menu_item_id", item.id %>
+            <%= hidden_field_tag "menu_item_name", item.name %>
+            <%= hidden_field_tag "menu_item_price", item.price %>
+            <%= submit_tag "Add" %>
+            <br><br>
+          <% end %>
+
+
         <% end %>
 
+        <% if role == "owner" %>
         <%= form_with(url: "/menu_items", method: "post") do %>
           <%= text_field_tag "name", nil, placeholder: "name", autofocus: true %>
           <%= text_field_tag "description", nil, placeholder: "description" %>
@@ -25,7 +43,8 @@
           <% # <%= file_field_tag "image", direct_upload: true %>
           <%= submit_tag "Add" %>
         <% end %>
-
+        <% end %>
+        <br><br>
       </label>
     </li>
   <% end %>

@@ -30,6 +30,9 @@
       <div class="Form-section">
         <%= form.submit "Sign-up!", class: "Form-submit" %>
       </div>
+
+      <%= form.hidden_field :role, value: "customer" %>
+
     <% end %>
   </div>
 </section>

@@ -14,6 +14,7 @@ class UsersController < ApplicationController
         last_name: params[:last_name],
         email: params[:email],
         password: params[:password],
+        role: params[:role],
       )
       # give a success message (in homepage) if account is created else give flash error
       if new_user.save
@@ -26,7 +27,6 @@ class UsersController < ApplicationController
         end
         flash[:welcome] = "#{greeting}, #{new_user.first_name.capitalize} #{new_user.last_name.capitalize} :)"
         flash[:notice] = "You have successfully created a new account."
-        # session[:current_user_id] = new_user.id
         redirect_to "/"
       else
         flash[:error] = new_user.errors.full_messages.join(", ")

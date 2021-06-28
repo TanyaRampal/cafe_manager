@@ -1,0 +1,133 @@
+/* Header for homepage, signin and signup pages */
+.Header-title {
+  font-size: 34px;
+  margin-bottom: 25px;
+  text-align: center;
+  color: gray;
+}
+
+hr {
+  border-top: 1.5px solid gray;
+  margin-bottom: 35px;
+}
+/* **************** */
+
+/* Ordered list in homepage */
+.Home-authenticate {
+  margin-left: 20%;
+  list-style: disc;
+  font-size: 18px;
+}
+
+.Home-authenticate > li {
+  margin-bottom: 10px;
+}
+/* **************** */
+
+/* Style for all flash messages */
+.Flash-error {
+  color: darkred;
+  margin-bottom: 20px;
+  font-size: 16px;
+  background-color: #ffb6b6;
+  padding: 5px;
+  border-radius: 2px;
+  display: table;
+  text-align: center;
+}
+
+.Flash-log {
+  color: green;
+  margin-bottom: 20px;
+  font-size: 16px;
+  background-color: rgba(83, 216, 139, 0.5);
+  padding: 5px;
+  border-radius: 2px;
+  display: table;
+}
+
+.Flash-welcome {
+  background-color: rgba(83, 216, 139, 0.5);
+  margin-bottom: 10px;
+  font-size: 20px;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+  color: green;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bold;
+}
+/* **************** */
+
+/* media queries for ipad */
+@media only screen and (max-width: 770px) and (min-width: 481px) and (min-height: 600px) and (max-height: 1024px) {
+  /* Header for homepage, signin and signup pages */
+  .Header-title {
+    font-size: 70px;
+    margin: auto;
+    margin-bottom: 50px;
+  }
+
+  .Home-authenticate {
+    margin-top: 100px;
+    font-size: 35px;
+    list-style: disc;
+    margin-left: 30px;
+  }
+  /* **************** */
+
+  /* Style for all flash messages */
+  .Flash-error,
+  .Flash-log {
+    font-size: 32px;
+    margin-bottom: 30px;
+  }
+
+  .Flash-error-todo {
+    font-size: 24px;
+  }
+
+  .Flash-welcome {
+    width: 350px;
+    margin: auto;
+    margin-bottom: 10px;
+  }
+  /* **************** */
+}
+/* **************** */
+
+/* media queries for mobile */
+@media only screen and (max-width: 480px) {
+  /* Header for homepage, signin and signup pages */
+  .Header-title {
+    font-size: 40px;
+    width: 360px;
+    margin: auto;
+    margin-bottom: 25px;
+  }
+
+  .Home-authenticate {
+    margin-top: 100px;
+    font-size: 22px;
+    list-style: disc;
+    margin-left: 30px;
+  }
+  /* **************** */
+
+  /* Style for all flash messages */
+  .Flash-error {
+    width: 210px;
+  }
+
+  .Flash-error-todo {
+    width: 250px;
+  }
+
+  .Flash-welcome {
+    width: 350px;
+    margin: auto;
+    margin-bottom: 10px;
+  }
+  /* **************** */
+}
+/* **************** */

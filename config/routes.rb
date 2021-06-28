@@ -5,9 +5,15 @@ Rails.application.routes.draw do
 
   resources :menu_items
   resources :menu_categories
+
+  resources :cart_items
+  resources :carts
+
   resources :users
 
-  get "/signin" => "sessions#new", as: :new_sessions
   post "/signin" => "sessions#create", as: :sessions
   delete "/signout" => "sessions#destroy", as: :destroy_session
+
+  get "/pending_orders" => "orders#show_pending", as: :pending_orders
+  get "/delivered_orders" => "orders#show_delivered", as: :delivered_orders
 end
